@@ -1,0 +1,25 @@
+---
+interface Props {
+  title: string;
+  featuredImage: string;
+  date: string;
+  slug: string;
+  excerpt: string;
+}
+
+const { title, featuredImage, date, slug, excerpt } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<article
+  class="bg-white shadow-md border border-gray-300 rounded-xl overflow-hidden transition-transform transform hover:-translate-y-1 hover:shadow-lg p-4"
+>
+  <img src={featuredImage} alt={title} class="w-full h-40 object-cover rounded-md mb-4" />
+  <h3 class="text-lg font-semibold text-gray-800">
+    <a href={`/posts/${slug}`} class="text-gray-700 hover:text-gray-900 transition-colors">
+      {title}
+    </a>
+  </h3>
+  <div class="text-sm text-gray-500">{new Date(date).toLocaleDateString()}</div>
+  <div class="prose text-sm mt-2 text-gray-600" set:html={excerpt} />
+</article>
