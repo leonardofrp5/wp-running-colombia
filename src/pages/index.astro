@@ -1,8 +1,21 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import { getPageInfo, getLatestPosts } from '../lib/wp';
+import Header from '@components/Header.astro';
+import Card from '@components/Card.astro';
+
+const { title, content } = await getPageInfo('running-colombia');
+const posts = await getLatestPosts({ perPage: 100 });
+
+const now = new Date();
+const upcomingRaces = posts.filter(({ date }) => new Date(date) > now);
+const pastRaces = posts.filter(({ date }) => new Date(date) <= now);
 ---
 
 <Layout>
-  <Welcome />
+  <Header title={title} />
+  <section class="container mx-auto px-4 py-8">
+    <Card title="Próximas Carreras" data={upcomingRaces} variant="upcoming" />
+    <Card title="Carreras Pasadas" data={pastRaces} variant="past" />
+  </section>
 </Layout>

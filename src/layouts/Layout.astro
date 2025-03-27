@@ -1,22 +1,52 @@
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Metadata básica -->
+    <title>Running Colombia - Carreras y Running en Colombia</title>
+    <meta
+      name="description"
+      content="Encuentra información sobre las próximas carreras y eventos de running en Colombia. Fechas, inscripciones y resultados actualizados."
+    />
+    <meta name="keywords" content="running, carreras, maratón, Colombia, 5K, 10K, media maratón" />
+    <meta name="author" content="Running Colombia" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:title" content="Running Colombia - Carreras y Running en Colombia" />
+    <meta
+      property="og:description"
+      content="Encuentra información sobre las próximas carreras y eventos de running en Colombia."
+    />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:url" content="https://tudominio.com" />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Running Colombia - Carreras y Running en Colombia" />
+    <meta
+      name="twitter:description"
+      content="Encuentra información sobre las próximas carreras y eventos de running en Colombia."
+    />
+    <meta name="twitter:image" content="/og-image.jpg" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta name="robots" content="index, follow" />
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>
