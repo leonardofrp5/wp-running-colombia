@@ -3,6 +3,9 @@ import type { Post, WPPost } from './interfaces';
 const domine = import.meta.env.WP_DOMAIN;
 const apiUrl = `${domine}/wp-json/wp/v2`;
 
+// Credenciales en Base64
+const token = btoa(`${import.meta.env.WP_USER}:${import.meta.env.WP_APP_PASSWORD}`);
+
 export const getPageInfo = async (slug: string) => {
   const response = await fetch(`${apiUrl}/pages?slug=${slug}`);
 
@@ -18,10 +21,15 @@ export const getPageInfo = async (slug: string) => {
 };
 
 export const getLatestPosts = async ({ perPage = 10 }: { perPage: number }) => {
-  const responde = await fetch(`${apiUrl}/posts?per_page=${perPage}&_embed`);
-  if (!responde.ok) throw new Error('Failed to fetch posts');
+  const response = await fetch(`${apiUrl}/posts?per_page=${perPage}&_embed&status=publish,future`, {
+    headers: {
+      Authorization: `Basic ${token}`
+    }
+  });
 
-  const result = await responde.json();
+  if (!response.ok) throw new Error('Failed to fetch posts');
+
+  const result = await response.json();
   if (!result.length) throw new Error('No posts found');
 
   const posts: Post[] = result.map((post: WPPost) => {
